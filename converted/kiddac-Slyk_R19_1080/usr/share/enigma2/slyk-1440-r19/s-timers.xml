@@ -1,0 +1,69 @@
+<skin>
+	<!-- ## Autotimer ## -->
+	<screen name="AutoTimerOverview" position="0,0" size="2560,1440" title="AutoTimer Overview" flags="wfNoBorder" backgroundColor="transparent">
+		<panel name="main-template-2"/>
+		<panel name="v5-tv-guide"/>
+		<widget source="Title" render="Label" position="120,164" size="1600,69" valign="center" halign="center" font="Regular;52" noWrap="1" zPosition="2" transparent="1" foregroundColor="white" backgroundColor="panelblue"/>
+		<widget name="entries" position="140,253" size="1560,980" EventNameFont="Regular; 40" DayNameFont="Regular;32" ServiceNameFont="Regular; 32" foregroundColor="white" backgroundColor="skydarkblue" backgroundColorSelected="skygold" foregroundColorSelected="skydarkblue" itemHeight="140" rowSplit1="51" rowSplit2="101" rowHeight="51" iconMargin="20" selectionPixmap="2018-selectbars/bar-105.png" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="1"/>
+		<panel name="New-Buttons-T2"/>
+		<panel name="t2-MenuButton-pos2"/>
+		<panel name="t2-OKButton"/>
+	</screen>
+	<screen name="AutoTimerImporter" position="0,0" size="2560,1440" title="Import AutoTimer" flags="wfNoBorder" backgroundColor="transparent">
+		<panel name="main-template-2"/>
+		<panel name="v5-services"/>
+		<widget source="Title" render="Label" position="120,164" size="1600,69" valign="center" halign="center" font="Regular;52" noWrap="1" zPosition="2" transparent="1" foregroundColor="white" backgroundColor="panelblue"/>
+		<widget name="list" textOffset="20,8" position="140,253" size="1560,1008" font="Regular;52" foregroundColor="white" backgroundColor="bgdarkblue" backgroundColorSelected="skygold" foregroundColorSelected="skydarkblue" scrollbarMode="showNever" itemHeight="72" selectionPixmap="2018-selectbars/bar-54.png" transparent="1"/>
+		<panel name="New-Buttons-T2"/>
+	</screen>
+	<screen name="AutoTimerEditor" position="0,0" size="2560,1440" title="Edit AutoTimer" flags="wfNoBorder" backgroundColor="transparent">
+		<panel name="Setup-Default"/>
+		<widget source="help" render="Label" position="120,232" size="1600,220" font="Regular;48" foregroundColor="white" backgroundColor="backgroundtop" valign="top" halign="left" transparent="1" zPosition="2"/>
+	</screen>
+	<screen name="AutoTimerFilterEditor" position="0,0" size="2560,1440" title="Edit AutoTimer Filters" flags="wfNoBorder" backgroundColor="transparent">
+		<panel name="Setup-Default"/>
+		<widget source="help" render="Label" position="120,232" size="1600,220" font="Regular;48" foregroundColor="white" backgroundColor="backgroundtop" valign="top" halign="left" transparent="1" zPosition="2"/>
+	</screen>
+	<screen name="AutoTimerServiceEditor" title="Edit AutoTimer Services" position="0,0" size="2560,1440" flags="wfNoBorder" backgroundColor="transparent">
+		<panel name="Setup-Default"/>
+	</screen>
+	<screen name="AutoTimerSettings" position="0,0" size="2560,1440" title="AutoTimer Settings" flags="wfNoBorder" backgroundColor="transparent">
+		<panel name="Setup-Default"/>
+		<widget source="help" render="Label" position="120,232" size="1600,220" font="Regular;48" foregroundColor="white" backgroundColor="backgroundtop" valign="top" halign="left" transparent="1" zPosition="2"/>
+		<panel name="HelpWindow"/>
+		<panel name="VKeyIcon"/>
+	</screen>
+	<screen name="AutoTimerFAQ" position="0,0" size="2560,1440" title="AutoTimer FAQ" flags="wfNoBorder" backgroundColor="transparent">
+		<panel name="main-template-2"/>
+		<panel name="v5-services"/>
+		<widget source="Title" render="Label" position="120,164" size="1600,69" valign="center" halign="center" font="Regular;52" noWrap="1" zPosition="2" transparent="1" foregroundColor="white" backgroundColor="panelblue"/>
+		<widget name="detailtext" position="200,253" size="1440,1008" font="Regular;44" backgroundColor="skydarkblue" foregroundColor="white" transparent="1"/>
+		<panel name="New-Buttons-T2"/>
+	</screen>
+	<screen name="AutoTimerHelp" position="0,0" size="2560,1440" title="AutoTimer Help" flags="wfNoBorder" backgroundColor="transparent">
+		<panel name="main-template-2"/>
+		<panel name="v5-services"/>
+		<widget source="Title" render="Label" position="120,164" size="1600,69" valign="center" halign="center" font="Regular;52" noWrap="1" zPosition="2" transparent="1" foregroundColor="white" backgroundColor="panelblue"/>
+		<widget name="detailtext" position="200,253" size="1440,1008" font="Regular;44" backgroundColor="skydarkblue" foregroundColor="white" transparent="1"/>
+		<panel name="New-Buttons-T2"/>
+	</screen>
+	<screen name="AutoTimerWizard" position="fill" title="Welcome..." flags="wfNoBorder" backgroundColor="black">
+		<panel name="WizardTemplate"/>
+	</screen>
+	<screen name="AutoTimerPreview" position="0,0" size="2560,1440" title="Preview AutoTimer" flags="wfNoBorder" backgroundColor="transparent">
+		<panel name="main-template-2"/>
+		<panel name="v5-tv-guide"/>
+		<widget source="Title" render="Label" position="120,164" size="1600,69" valign="center" halign="center" font="Regular;52" noWrap="1" zPosition="2" transparent="1" foregroundColor="white" backgroundColor="panelblue"/>
+		<widget source="timerlist" render="Listbox" position="140,253" size="1560,1000" foregroundColor="white" backgroundColor="skydarkblue" backgroundColorSelected="skygold" foregroundColorSelected="skydarkblue" selectionPixmap="2018-selectbars/bar-75.png" transparent="1" zPosition="1" enableWrapAround="1" scrollbarMode="showOnDemand">
+			<convert type="TemplatedMultiContent">{"template": [
+			MultiContentEntryText(pos=(20,0), size=(760,48), text = 0, font = 0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER), #Event
+			MultiContentEntryText(pos=(780, 0), size=(760,48), text = 3, font = 0, flags = RT_HALIGN_RIGHT|RT_VALIGN_CENTER), #Service
+			MultiContentEntryText(pos=(20,48), size=(760,48), text = 4, font = 1, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER), #Date
+			],
+			"fonts": [gFont("Regular",40),gFont("Regular",32)],
+			"itemHeight": 100
+			}</convert>
+		</widget>
+		<panel name="New-Buttons-T2"/>
+	</screen>
+</skin>

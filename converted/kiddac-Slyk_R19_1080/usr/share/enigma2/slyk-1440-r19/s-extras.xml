@@ -1,0 +1,94 @@
+<skin>
+	<!-- Change the end number of each panel name in that section to personalise your skin. -->
+	<!-- DO NOT edit the screen name - only the panel name number -->
+	<!-- Reboot GUI required.-->
+	<!-- EPGS                                                -->
+	<!-- EPG SKY TABS - amend the panel numbers below        -->
+	<!-- 1 = original no tabs (default)                      -->
+	<!-- 2 = sky tabs - This also requires the EpgSelection.py as found in my dropbox. EpgSelection.py needs to be placed in /usr/lib/enigma2/python/Screens. Reboot required. -->
+	<!-- edit both panels -->
+	<!-- EPG  (epg button)-->
+	<screen name="GraphicalEPGPIG" position="0,0" size="2560,1440" backgroundColor="backgroundmid" flags="wfNoBorder">
+		<panel name="GraphicalEPGPIG1"/>
+	</screen>
+	<screen name="GraphicalEPG" position="0,0" size="2560,1440" backgroundColor="backgroundmid" flags="wfNoBorder">
+		<panel name="GraphicalEPG1"/>
+	</screen>
+	<screen name="GraphicalInfoBarEPG" position="0,0" size="2560,1440" backgroundColor="transparent" transparent="0" flags="wfNoBorder">
+		<panel name="GraphicalInfoBarEPG1"/>
+	</screen>	
+	
+	#########################################################################################################
+	
+        <!-- infobar layout -->
+	<!-- 1 = 2 programme style with tuner and snr -->
+	<!-- 2 = 2 programme style with tuner and snr with picon -->
+	<!-- 3 = original sly style with 3 programmes, now, next, later -->
+	<!-- 4 = original sly style with 3 programmes, now, next, later with picon -->
+	<screen name="InfoBar" flags="wfNoBorder" position="0,0" size="2560,1440" title="InfoBar" backgroundColor="transparent">
+		<panel name="Infobar-layout3"/>
+	</screen>
+	
+	#########################################################################################################
+	
+        <!-- second info bar - Info ( ok button twice ) -->
+	<!-- 1 = ECM/SNR/RES -->
+	<!-- 2 = No ECM/SNR/RES  -->
+	<screen name="SecondInfoBar" flags="wfNoBorder" position="0,0" size="2560,1440" title="InfoBar" backgroundColor="transparent">
+		<panel name="SecondInfoBar2"/>
+	</screen>
+	
+	#########################################################################################################
+	
+	<!-- Event View (info button)-->
+	<!-- 1 = coloured buttons (default)-->
+	<!-- 2 = no buttons -->
+	<screen name="EventView" position="0,0" size="2560,1440" backgroundColor="transparent" flags="wfNoBorder">
+		<panel name="EventView2"/>
+	</screen>
+	
+	#########################################################################################################
+	
+        <!-- QuickEpg info bar - single epg < > -->
+	<!-- 1 = Original - No programme description - coloured buttons at bottom -->
+	<!-- 2 = Programme description - coloured buttons at bottom (default) -->
+	<!-- 3 = No programme description - No coloured buttons - Channel/Time text at bottom. -->
+	<!-- 4 = Programme description -  No coloured buttons - Channel/Time text at bottom. -->
+	<screen name="QuickEPG" flags="wfNoBorder" position="0,0" size="2560,1440" backgroundColor="transparent">
+		<panel name="QuickEPG4"/>
+	</screen>
+	
+	#########################################################################################################
+	
+        <!-- Movies  -->
+	<!-- 1 = Enigma2 Layout -->
+	<!-- 2 = Sky Planner Mod Layout -Fake Tabs -->
+	<!-- 3 = Sky Planner Mod Layout - No Fake tabs -->
+	<screen name="MovieSelection" position="0,0" size="2560,1440" flags="wfNoBorder" backgroundColor="backgroundmid" title="Movie Selection">
+		<panel name="MovieSelection1"/>
+	</screen>
+	
+	#########################################################################################################
+	
+        <!-- Skin logo -->
+	<!-- 1 = slyk logo (default) -->
+	<!-- 2 = Official Sly logo -->
+	<screen name="my-logo">
+		<panel name="my-logo1"/>
+	</screen>
+	
+	#########################################################################################################
+
+        <!-- epg timeline graphic -->
+	<!-- 1 = subtle (default) -->
+	<!-- 2 = yellow -->
+	<screen name="GraphicalEPGPIG-timeline_now">
+		<panel name="GraphicalEPGPIG-timeline1"/>
+	</screen>
+	<screen name="GraphicalEPG-timeline_now">
+		<panel name="GraphicalEPG-timeline1"/>
+	</screen>
+	<screen name="GraphicalInfoBarEPG-timeline_now">
+		<panel name="GraphicalInfoBarEPG-timeline1"/>
+	</screen>
+</skin>

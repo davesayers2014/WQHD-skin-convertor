@@ -1,0 +1,135 @@
+<skin>
+	<screen name="t1-InfoButton">
+		<ePixmap pixmap="myicons/info.png" position="2200,1260" size="48,48" alphatest="blend"/>
+		<eLabel text="Info" position="2256,1256" size="92,56" font="Regular;44" foregroundColor="skylightblue" backgroundColor="backgroundbot" valign="center" halign="left" noWrap="1" transparent="1"/>
+	</screen>
+	<screen name="t1-InfoButton-pos2">
+		<ePixmap pixmap="mybuttons/key-info.png" position="2133,1261" size="100,48" alphatest="blend"/>
+	</screen>
+	<screen name="t1-MenuButton">
+		<ePixmap pixmap="mybuttons/key-menu.png" position="2247,1261" size="100,48" alphatest="blend"/>
+	</screen>
+	<screen name="t1-MenuButton-row2">
+		<ePixmap pixmap="mybuttons/key-menu.png" position="2261,1331" size="100,48" alphatest="blend"/>
+	</screen>
+	<screen name="t1-OKButton">
+		<ePixmap pixmap="mybuttons/key-ok.png" position="2247,1261" size="100,48" alphatest="blend"/>
+	</screen>
+	<screen name="t1-TextButton">
+		<ePixmap pixmap="mybuttons/key-text.png" position="2247,1261" size="100,48" alphatest="blend"/>
+	</screen>
+	<screen name="t2-InfoButton">
+		<ePixmap pixmap="myicons/info.png" position="2211,1331" size="48,48" alphatest="blend"/>
+		<eLabel text="Info" position="2268,1331" size="92,48" font="Regular;44" foregroundColor="skylightblue" backgroundColor="backgroundbot" valign="center" halign="left" noWrap="1" transparent="1"/>
+	</screen>
+	<screen name="t2-InfoButton-pos2">
+		<ePixmap pixmap="mybuttons/key-info.png" position="2227,1331" size="100,48" alphatest="blend"/>
+	</screen>
+	<screen name="t2-OKButton-pos2">
+		<ePixmap pixmap="mybuttons/key-ok.png" position="2227,1331" size="100,48" alphatest="blend"/>
+	</screen>
+	<screen name="t2-MenuButton-pos2">
+		<ePixmap pixmap="mybuttons/key-menu.png" position="2227,1331" size="100,48" alphatest="blend"/>
+	</screen>
+	<screen name="t2-TextButton">
+		<ePixmap pixmap="mybuttons/key-text.png" position="2340,1331" size="100,48" alphatest="blend"/>
+	</screen>
+	<screen name="t2-ExitButton">
+		<ePixmap pixmap="mybuttons/key-exit.png" position="2340,1331" size="100,48" alphatest="blend"/>
+	</screen>
+	<screen name="t2-HelpButton">
+		<ePixmap pixmap="mybuttons/key-help.png" position="2340,1331" size="100,48" alphatest="blend"/>
+	</screen>
+	<screen name="t2-OKButton">
+		<ePixmap pixmap="mybuttons/key-ok.png" position="2340,1331" size="100,48" alphatest="blend"/>
+	</screen>
+	<screen name="t2-MenuButton">
+		<ePixmap pixmap="mybuttons/key-menu.png" position="2340,1331" size="100,48" alphatest="blend"/>
+	</screen>
+	<screen name="Red-New-Button">
+		<ePixmap pixmap="buttons/key_red.png" position="0,7" size="48,48" alphatest="blend" transparent="1" objectTypes="key_red,Button,Label"/>
+		<ePixmap pixmap="buttons/key_red.png" position="0,7" size="48,48" alphatest="blend" transparent="1" objectTypes="red,Button,Label"/>
+		<ePixmap pixmap="buttons/key_red.png" position="0,7" size="48,48" alphatest="blend" transparent="1" objectTypes="languagetext,Button,Label"/>
+		<widget name="initialize" pixmap="buttons/key_red.png" position="0,7" size="48,48" alphatest="blend" transparent="1" objectTypes="initializetext,Button,Label"/>
+		<widget name="cancel" pixmap="buttons/key_red.png" position="0,7" size="48,48" alphatest="blend" transparent="1" objectTypes="canceltext,Button,Label"/>
+		<widget source="key_red" render="Pixmap" pixmap="buttons/key_red.png" position="0,7" size="48,48" alphatest="blend" transparent="1" objectTypes="key_red,StaticText">
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget name="key_red" position="64,0" size="436,59" font="Regular;44" valign="center" halign="left" foregroundColor="skyblue" backgroundColor="backgroundbot" noWrap="1" transparent="1" objectTypes="key_red,Button,Label"/>
+		<widget name="red" position="64,0" size="436,59" font="Regular;44" valign="center" halign="left" foregroundColor="skyblue" backgroundColor="backgroundbot" noWrap="1" transparent="1" objectTypes="red,Button,Label"/>
+		<widget name="initializetext" position="64,0" size="436,59" font="Regular;44" valign="center" halign="left" foregroundColor="skyblue" backgroundColor="backgroundbot" noWrap="1" transparent="1" objectTypes="initializetext,Button,Label"/>
+		<widget name="canceltext" position="64,0" size="436,59" font="Regular;44" valign="center" halign="left" foregroundColor="skyblue" backgroundColor="backgroundbot" noWrap="1" transparent="1" objectTypes="canceltext,Button,Label"/>
+		<widget source="key_red" render="Label" position="59,0" size="436,64" font="Regular;44" valign="center" halign="left" foregroundColor="skyblue" backgroundColor="backgroundbot" noWrap="1" transparent="1" objectTypes="key_red,StaticText"/>
+		<widget name="languagetext" position="64,0" size="436,59" font="Regular;44" valign="center" halign="left" foregroundColor="skyblue" backgroundColor="backgroundbot" noWrap="1" transparent="1" objectTypes="languagetext,Button,Label"/>
+	</screen>
+	<screen name="Green-New-Button">
+		<ePixmap pixmap="buttons/key_green.png" position="0,7" size="48,48" alphatest="blend" transparent="1" objectTypes="key_green,Button,Label"/>
+		<ePixmap pixmap="buttons/key_green.png" position="0,7" size="48,48" alphatest="blend" transparent="1" objectTypes="green,Button,Label"/>
+		<widget name="ok" pixmap="buttons/key_green.png" position="0,7" size="48,48" alphatest="blend" transparent="1" objectTypes="oktext,Button,Label"/>
+		<widget source="key_green" render="Pixmap" pixmap="buttons/key_green.png" position="0,7" size="48,48" alphatest="blend" transparent="1" objectTypes="key_green,StaticText">
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget name="key_green" position="64,0" size="436,59" font="Regular;44" valign="center" halign="left" foregroundColor="skyblue" backgroundColor="backgroundbot" noWrap="1" transparent="1" objectTypes="key_green,Button,Label"/>
+		<widget name="green" position="64,0" size="436,59" font="Regular;44" valign="center" halign="left" foregroundColor="skyblue" backgroundColor="backgroundbot" noWrap="1" transparent="1" objectTypes="green, Button,Label"/>
+		<widget name="oktext" position="64,0" size="436,59" font="Regular;44" valign="center" halign="left" foregroundColor="skyblue" backgroundColor="backgroundbot" noWrap="1" transparent="1" objectTypes="oktext,Button,Label"/>
+		<widget source="key_green" render="Label" position="64,0" size="436,59" font="Regular;44" valign="center" halign="left" foregroundColor="skyblue" backgroundColor="backgroundbot" noWrap="1" transparent="1" objectTypes="key_green,StaticText"/>
+	</screen>
+	<screen name="Yellow-New-Button">
+		<ePixmap pixmap="buttons/key_yellow.png" position="0,7" size="48,48" alphatest="blend" transparent="1" objectTypes="key_yellow,Button,Label"/>
+		<ePixmap pixmap="buttons/key_yellow.png" position="0,7" size="48,48" alphatest="blend" transparent="1" objectTypes="yellow,Button,Label"/>
+		<widget source="key_yellow" render="Pixmap" pixmap="buttons/key_yellow.png" position="0,7" size="48,48" alphatest="blend" transparent="1" objectTypes="key_yellow,StaticText">
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget name="key_yellow" position="64,0" size="436,59" font="Regular;44" valign="center" halign="left" foregroundColor="skyblue" backgroundColor="backgroundbot" noWrap="1" transparent="1" objectTypes="key_yellow,Button,Label"/>
+		<widget name="yellow" position="64,0" size="436,59" font="Regular;44" valign="center" halign="left" foregroundColor="skyblue" backgroundColor="backgroundbot" noWrap="1" transparent="1" objectTypes="yellow,Button,Label"/>
+		<widget source="key_yellow" render="Label" position="64,0" size="436,59" font="Regular;44" valign="center" halign="left" foregroundColor="skyblue" backgroundColor="backgroundbot" noWrap="1" transparent="1" objectTypes="key_yellow,StaticText"/>
+	</screen>
+		<screen name="Yellow-New-Button-Small">
+		<ePixmap pixmap="buttons/key_yellow.png" position="0,7" size="48,48" alphatest="blend" transparent="1" objectTypes="key_yellow,Button,Label"/>
+		<ePixmap pixmap="buttons/key_yellow.png" position="0,7" size="48,48" alphatest="blend" transparent="1" objectTypes="yellow,Button,Label"/>
+		<widget source="key_yellow" render="Pixmap" pixmap="buttons/key_yellow.png" position="0,7" size="48,48" alphatest="blend" transparent="1" objectTypes="key_yellow,StaticText">
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget name="key_yellow" position="64,0" size="436,59" font="Regular;40" valign="center" halign="left" foregroundColor="skyblue" backgroundColor="backgroundbot" noWrap="1" transparent="1" objectTypes="key_yellow,Button,Label"/>
+		<widget name="yellow" position="64,0" size="436,59" font="Regular;40" valign="center" halign="left" foregroundColor="skyblue" backgroundColor="backgroundbot" noWrap="1" transparent="1" objectTypes="yellow,Button,Label"/>
+		<widget source="key_yellow" render="Label" position="64,0" size="436,59" font="Regular;40" valign="center" halign="left" foregroundColor="skyblue" backgroundColor="backgroundbot" noWrap="1" transparent="1" objectTypes="key_yellow,StaticText"/>
+	</screen>
+	<screen name="Blue-New-Button">
+		<ePixmap pixmap="buttons/key_blue.png" position="0,7" size="48,48" alphatest="blend" transparent="1" objectTypes="key_blue,Button,Label"/>
+		<ePixmap pixmap="buttons/key_blue.png" position="0,7" size="48,48" alphatest="blend" transparent="1" objectTypes="blue,Button,Label"/>
+		<widget source="key_blue" render="Pixmap" pixmap="buttons/key_blue.png" position="0,7" size="48,48" alphatest="blend" transparent="1" objectTypes="key_blue,StaticText">
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget name="key_blue" position="64,0" size="436,59" font="Regular;44" valign="center" halign="left" foregroundColor="skyblue" backgroundColor="backgroundbot" noWrap="1" transparent="1" objectTypes="key_blue,Button,Label"/>
+		<widget name="blue" position="64,0" size="436,59" font="Regular;44" valign="center" halign="left" foregroundColor="skyblue" backgroundColor="backgroundbot" noWrap="1" transparent="1" objectTypes="blue,Button,Label"/>
+		<widget source="key_blue" render="Label" position="64,0" size="436,59" font="Regular;44" valign="center" halign="left" foregroundColor="skyblue" backgroundColor="backgroundbot" noWrap="1" transparent="1" objectTypes="key_blue,StaticText"/>
+	</screen>
+	<screen name="New-Buttons-T1">
+		<panel position="204,1255" size="0,59">
+			<panel name="Red-New-Button"/>
+		</panel>
+		<panel position="704,1255" size="0,59">
+			<panel name="Green-New-Button"/>
+		</panel>
+		<panel position="1204,1255" size="0,59">
+			<panel name="Yellow-New-Button"/>
+		</panel>
+		<panel position="1704,1255" size="0,59">
+			<panel name="Blue-New-Button"/>
+		</panel>
+	</screen>
+	<screen name="New-Buttons-T2">
+		<panel position="204,1328" size="0,59">
+			<panel name="Red-New-Button"/>
+		</panel>
+		<panel position="704,1328" size="0,59">
+			<panel name="Green-New-Button"/>
+		</panel>
+		<panel position="1204,1328" size="0,59">
+			<panel name="Yellow-New-Button"/>
+		</panel>
+		<panel position="1704,1328" size="0,59">
+			<panel name="Blue-New-Button"/>
+		</panel>
+	</screen>
+</skin>

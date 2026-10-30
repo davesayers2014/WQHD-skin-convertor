@@ -1,0 +1,154 @@
+# Slyk1Hd toppicks V2 (C) kiddac. 2017
+# Simplified code. Much quicker to execute. Now with browser referer agent spoofing. Scrape data moved into skin folder. No more duplicates.
+# Experimenting with Cloudinary as the image resizer instead of the temperamental rsz.io
+# Anyone is welcome to use my code if I am correctly referenced as the author. Those in the know know anyway.
+# Original concept credits go to the skin modding crew on Techkings (Danmed, Grantdavey etc.) Thanks to the other TK lads for doing some testing. 
+# Special thankyou to the ZFA that helped clean up the original code. (ZFA drop me an email sometime so I can interact with you.)
+
+VERSION 5.200 or above of Slyk 1 HD skin required for this modification. 
+
+This modification brings in the toppicks screens on loading the epg. 
+Show bouquets on launch is required for this modification to work.
+
+To turn on show bouquets on launch...
+
+Press Epg button
+Press Menu
+Change settings of "Show Bouquets on Launch" to yes.
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+Download and extract toppicks-v2.zip 
+
+Contents of the zip:
+
+    run-me-first.sh
+    slyk1-scrape.sh
+    slyk1-pick.sh
+	root
+	
+FTP these 3 .sh files over to your script folder on your box.
+
+Openatv location is usr/script
+Openvix location is usr/scripts (make a new folder called scripts if it doesn't already exist)
+
+In your ftp software change the file attributes of these 3 files on your box to be executable 755 or 777. (See toppicks-permissions.jpg in this dropbox folder for a screen shot of how this may look.)
+To change the file attributes right click on the files and there will be an option there to change the file attributes.
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+Open up skin.xml in my skin folder on your sat box 
+
+/usr/share/enigma2/slyk-1-hd
+
+remove the comment tags around the toppicks.xml include.
+
+<!-- <include filename="/usr/share/enigma2/slyk-1-hd/toppicks.xml" /> -->	
+  
+becomes
+
+<include filename="/usr/share/enigma2/slyk-1-hd/toppicks.xml" />	
+
+** Reboot your GUI. **
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+After you have all the files in place. You need to manually run the scripts once to get you going. After that we will use the cron timers to automate everything.
+
+OpenATV
+Menu > infopanel > plugins > Jobmanager 
+
+OpenVIX
+Menu > setup > vix > script-runner
+
+Firstly we need to update the 'wget' component to the full version to allow it to fully function and perform the scrapes successfully. (A scrape is just sourcing the code and images from an external web page.)
+
+Run the files in jobmanger(atv)/script-runner(vix) in this order.
+
+run-me-first.sh
+slyk1-scrape.sh
+slyk1-pick.sh
+
+if successful, you should see no on screen errors, and if you now press your epg button, you should see the latest toppicks images. 
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+CRON TIMERS
+
+To automate the process of changing the toppicks images. We need to set up the cron timers. 
+
+We need to setup slyk1-scrape.sh once or twice a day. (this is the web scraper)
+We need to setup slyk1-pick.sh to run regularly, say every 15 mins, or every hour etc. (this is the image rotator)
+
+You can setup cron timers via the menus.
+MENU > TIMERS > CRON TIMERS > GREEN
+But we don't have much control over this and is not perfect for our needs. So it is better to do them manually via editing the correct cron file 
+
+I have provided a sample cron timer file in the zip. Open up root in a text editor to see the contents.
+
+
+┌───────────── minute (0 - 59)
+ │ ┌───────────── hour (0 - 23)
+ │ │ ┌───────────── day of month (1 - 31)
+ │ │ │ ┌───────────── month (1 - 12)
+ │ │ │ │ ┌───────────── day of week (0 - 6) (Sunday to Saturday;
+ │ │ │ │ │                                       7 is also Sunday)
+ │ │ │ │ │
+ │ │ │ │ │
+ * * * * *  command to execute
+
+ On OpenATV, cron timers live in etc/cron/crontabs.
+ I think OpenVix cron times live in etc/cron
+ You need to edit the file called 'root'
+ 
+SAMPLE CRON TIMER
+
+** change script to scripts for OpenVIX **
+
+0 8,18 * * * /usr/script/slyk1-scrape.sh 
+*/15 * * * * /usr/script/slyk1-pick.sh
+
+This runs scrape at 8am and 6pm daily and picks every 15 mins
+
+---------------------------------------------
+
+COMMON CRON TIMERS
+
+*/10 * * * * (every 10 mins)
+*/15 * * * * (every 15 mins)
+*/30 * * * * (every 30 mins)
+0 * * * * (every hour)
+0 0 * * * (every day 00:00)
+
+or use a cron timer generator if you wish to create your own.
+https://crontab.guru
+
+---------------------------------------------
+
+For testing purposes you can assign a button on your remote to run the slyk1-pick.sh script. Then you can run it when ever you want. 
+For example I set my portal button on my remote to run it. 
+
+OpenATV is menu...setup...usage & gui...hotkey setup
+OpenVIX is Setup..System..User interface..Button setup
+
+This is the first release of this new code. Let me know if you run into any problems or errors. 
+kiddac2015@gmail.com
+
+** edit 27/03/2017 **
+There was an issue today where a bad scrape seemed to break this script. I think it was just a gremlin in the initial daily scrape. 
+Upon further testing re-running slyk1-scrape.sh seemed to fix the problem. 
+So please try this before reporting it as a bug. 
+
+
+
+
+
+
+
+
+  
+  
+
+
+	

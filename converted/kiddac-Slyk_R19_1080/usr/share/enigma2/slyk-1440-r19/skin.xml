@@ -1,0 +1,180 @@
+<skin>
+	<!-- WQHD (2560x1440) conversion of slyk-1080-r19 by wqhd_convert.py: geometry, fonts and graphics scaled x4/3 -->
+	<!-- Skin: Slyk1080 by kiddac : linuxsat-support.com -->
+	<!-- All graphics, icons, buttons, screens are my own hard work-->
+	<!-- If using any elements/graphics from this skin in your own work please reference me correctly -->
+	<!-- ****************************************************************************************************** -->
+	<!-- If you would like to buy me a beer for my efforts https://paypal.me/kiddac -->
+	<!-- ****************************************************************************************************** -->
+	<output id="0">
+		<resolution xres="2560" yres="1440" bpp="32"/>
+	</output>
+	<!-- includes -->
+	<include filename="s-main-templates.xml"/>
+	<include filename="s-button-templates.xml"/>
+	<include filename="s-openatv.xml"/>
+	<include filename="s-legacy.xml"/>
+	<include filename="s-wizards.xml"/>
+	<include filename="s-menus.xml"/>
+	<include filename="s-infopanel.xml"/>
+	<include filename="s-movies.xml"/>
+	<include filename="s-epg.xml"/>
+	<include filename="s-timers.xml"/>
+	<include filename="s-channelselection.xml"/>
+	<include filename="s-infobar.xml"/>
+	<include filename="s-plugins.xml"/>
+	<include filename="s-network.xml"/>
+	<include filename="s-vix.xml" />
+	<include filename="s-extras.xml"/>
+	<include filename="s-toppicks3.xml"/>
+	<!-- fonts -->
+	<fonts>
+		<!-- default skin fonts -->
+		<font name="Subtitlefont" filename="/usr/share/fonts/nmsbd.ttf" scale="90"/>
+		<font name="LCD" filename="/usr/share/fonts/lcd.ttf" scale="100"/>
+		<font name="Replacement" filename="/usr/share/fonts/ae_AlMateen.ttf" scale="90" replacement="1"/>
+		<!-- slyk1080 fonts -->
+		<font name="Regular" filename="fonts/slyk-medium.ttf" scale="100"/>
+		<font name="Bold" filename="fonts/slyk-bold.ttf" scale="100"/>
+		<font name="Console" filename="fonts/Inconsolata-Regular.ttf" scale="100"/>
+		<!-- alias -->
+		<alias name="Body" font="Regular" size="52" height="72"/>
+		<alias name="TextNormal" font="Regular" size="52" height="72"/>
+		<!-- context menu -->
+		<alias name="ChoiceList" font="Regular" size="52" height="72"/>
+		<!-- plugins -->
+		<alias name="PluginBrowser0" font="Regular" size="43" height="60"/>
+		<!-- plugin name -->
+		<alias name="PluginBrowser1" font="Regular" size="28" height="40"/>
+		<!-- plugin description -->
+		<!-- help menus -->
+		<alias name="HelpMenuList" font="Regular" size="52" height="72"/>
+		<!-- virtual keyboard -->
+		<alias name="VirtualKeyBoard" font="Regular" size="36" height="89"/>
+		<!-- used on tuner config - positioner -->
+		<alias name="SelectionList" font="Regular" size="52" height="72"/>
+		<!-- locationbox i.e movie file location  -->
+		<alias name="FileList" font="Regular" size="52" height="72"/>
+		<alias name="FileListMulti" font="Regular" size="52" height="72"/>
+	</fonts>
+	<!-- default colour list -->
+	<colors>
+		<color name="transparent" value="#ff000000"/>
+		<color name="black" value="#000000"/>
+		<color name="red" value="#ff0011"/>
+		<color name="green" value="#307e13"/>
+		<color name="yellow" value="#ffff00"/>
+		<color name="blue" value="#0064c7"/>
+		<color name="white" value="#e9e9e9"/>
+		<color name="zapgreen" value="#007f0e"/>
+		<color name="verydarkgrey" value="#555555"/>
+		<color name="grey" value="#8c8c93"/>
+		<color name="skyblue" value="#5ea1e3"/>
+		<color name="skylightblue" value="#7eaeef"/>
+		<color name="skydarkblue" value="#133171"/>
+		<color name="skygold" value="#f2d320"/>
+		<color name="skygoldbg" value="#f5c400"/>
+		<color name="skydarkbluebg" value="#16356e"/>
+		<color name="guidecolor" value="skyblue"/>
+		<color name="backgroundtop" value="#1d68ac"/>
+		<color name="backgroundmid" value="#1c5791"/>
+		<color name="backgroundbot" value="#1c4475"/>
+		<color name="bgdarkblue" value="#082353"/>
+		<color name="messageboxbg" value="#082353"/>
+		<color name="skydarkrow" value="#10326c"/>
+		<color name="skylightrow" value="#204382"/>
+		<color name="panelblue" value="#00417a"/>
+		<color name="skytitlebackground" value="#00417a"/>
+	</colors>
+	<!-- default colours -->
+	<windowstyle type="skinned" id="0">
+		<title offset="32,5" font="Bold;52"/>
+		<color name="Background" color="messageboxbg"/>
+		<color name="LabelForeground" color="white"/>
+		<color name="ListboxBackground" color="#00102751"/>
+		<color name="ListboxForeground" color="white"/>
+		<color name="ListboxSelectedBackground" color="skygold"/>
+		<color name="ListboxSelectedForeground" color="skydarkblue"/>
+		<color name="ListboxMarkedBackground" color="black"/>
+		<color name="ListboxMarkedForeground" color="red"/>
+		<color name="ListboxMarkedAndSelectedBackground" color="skygold"/>
+		<color name="ListboxMarkedAndSelectedForeground" color="skydarkblue"/>
+		<color name="WindowTitleForeground" color="white"/>
+		<color name="WindowTitleBackground" color="skytitlebackground"/>
+		<!-- menu border -->
+		<borderset name="bsWindow">
+			<pixmap pos="bpTopLeft" filename="screens/b_tl.png"/>
+			<pixmap pos="bpTop" filename="screens/b_t.png"/>
+			<pixmap pos="bpTopRight" filename="screens/b_tr.png"/>
+			<pixmap pos="bpLeft" filename="screens/b_l.png"/>
+			<pixmap pos="bpRight" filename="screens/b_r.png"/>
+			<pixmap pos="bpBottomLeft" filename="screens/b_bl.png"/>
+			<pixmap pos="bpBottom" filename="screens/b_b.png"/>
+			<pixmap pos="bpBottomRight" filename="screens/b_br.png"/>
+		</borderset>
+	</windowstyle>
+	<windowstyle type="skinned" id="1">
+		<color name="Background" color="black"/>
+		<color name="LabelForeground" color="white"/>
+		<color name="ListboxBackground" color="#00102751"/>
+		<color name="ListboxForeground" color="white"/>
+		<color name="ListboxSelectedBackground" color="skygold"/>
+		<color name="ListboxSelectedForeground" color="skydarkblue"/>
+		<color name="ListboxMarkedBackground" color="black"/>
+		<color name="ListboxMarkedForeground" color="red"/>
+		<color name="ListboxMarkedAndSelectedBackground" color="skygold"/>
+		<color name="ListboxMarkedAndSelectedForeground" color="skydarkblue"/>
+		<color name="WindowTitleForeground" color="white"/>
+		<color name="WindowTitleBackground" color="skytitlebackground"/>
+	</windowstyle>
+	<parameters>
+		<parameter name="AutotimerEnabledIcon" value="20,4,51,48"/>
+		<!-- Autotimer tick box -->
+		<parameter name="AutotimerRecordIcon" value="80,11,40,40"/>
+		<!-- Autotimer Record Icon -->
+		<parameter name="ChoicelistVerticalAlignment" value="*top"/>
+		<parameter name="ChoicelistDash" value="0,4,2160,72"/>
+		<parameter name="ChoicelistNameSingle" value="91,4,2160,72"/>
+		<parameter name="ChoicelistName" value="91,4,2160,72"/>
+		<parameter name="ChoicelistIcon" value="20,11,51,51"/>
+		<parameter name="ConfigListSeperator" value="600"/>
+		<!-- example is LocationBox -->
+		<parameter name="FileListIcon" value="20,16,40,40"/>
+		<parameter name="FileListName" value="80,4,964,72"/>
+		<parameter name="FileListMultiLock" value="20,12,51,51"/>
+		<parameter name="FileListMultiIcon" value="91,16,51,51"/>
+		<parameter name="FileListMultiName" value="151,11,1387,72"/>
+		<parameter name="HelpMenuListHlp" value="20,8,1400,60"/>
+		<!-- help menu text -->
+		<parameter name="HelpMenuListExtHlp0" value="20,8,1400,60"/>
+		<parameter name="HelpMenuListExtHlp1" value="0,67,1400,52"/>
+		<parameter name="PluginBrowserIcon" value="20,11,200,80"/>
+		<!-- plugins main icon -->
+		<parameter name="PluginBrowserName" value="240,7,60"/>
+		<!-- plugins name -->
+		<parameter name="PluginBrowserDescr" value="240,56,40"/>
+		<!-- plugins description -->
+		<parameter name="PluginBrowserDownloadIcon" value="20,0,120,100"/>
+		<!-- plugins + - boxed icon -->
+		<parameter name="PluginBrowserDownloadName" value="160,7,60"/>
+		<!-- plugins download name - see font alias PluginBrowser0 -->
+		<parameter name="PluginBrowserDownloadDescr" value="160,56,40"/>
+		<!-- plugins download description -see font alias PluginBrowser1 -->
+		<!-- information - services -->
+		<parameter name="ServiceInfo" value="0,0,460,60"/>
+		<parameter name="ServiceInfoLeft" value="0,0,460,51"/>
+		<parameter name="ServiceInfoRight" value="460,0,791,51"/>
+		<!-- used on tuner config - positioner -->
+		<parameter name="SelectionListDescr" value="100,4,1500,60"/>
+		<parameter name="SelectionListLock" value="20,4,51,48"/>
+		<parameter name="SelectionListLockOff" value="20,4,51,48"/>
+		<parameter name="VirtualKeyBoard" value="89,89"/>
+		<parameter name="VirtualKeyBoardAlignment" value="0,0"/>
+		<parameter name="VirtualKeyBoardPadding" value="0,0"/>
+		<parameter name="EPGImportFilterListDescr" value="100,4,1500,60"/>
+		<parameter name="EPGImportFilterListLockOn" value="20,4,51,48"/>
+		<parameter name="EPGImportFilterListLockOff" value="20,4,51,48"/>
+	</parameters>
+</skin>
+
+

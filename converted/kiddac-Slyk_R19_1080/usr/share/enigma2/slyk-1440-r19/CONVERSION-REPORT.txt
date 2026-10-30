@@ -1,0 +1,22 @@
+slyk-1080-r19 -> slyk-1440-r19  (source 1920 wide, scale x4/3 = 1.3333)
+
+Folders written to /usr/share/enigma2:
+  slyk-1080-r19 -> slyk-1440-r19  (full folder)
+
+Files: {'images': 467, 'copied': 6, 'xml': 18}
+
+Numeric attributes NOT scaled (unknown meaning - check these screens):
+  <text font="0">  x2
+  <text font="1">  x2
+  <widget number="2">  x2
+  <widget number="3">  x4
+
+Notes:
+  applet lines scaled  x49
+  Layout expressions converted:
+    c-240 -> c-320  x1
+    c-45 -> c-60  x2
+    e-203 -> e-271  x1
+    e-255 -> e-340  x1
+    e-41 -> e-55  x4
+    e-69 -> e-92  x1
