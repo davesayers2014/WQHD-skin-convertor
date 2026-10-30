@@ -1,0 +1,253 @@
+name: Convert a skin from a link
+
+on:
+  workflow_dispatch:
+    inputs:
+      link:
+        description: >-
+          Link to the skin's repository, or to a folder in it. Examples:
+          https://github.com/littlesat/skin-PLiHD  -  littlesat/skin-PLiHD  -
+          https://github.com/Taapat/skin-SimpleGray/tree/master/usr/share/enigma2/SimpleGray-FHD
+        required: true
+      branch:
+        description: Branch, tag or commit (leave empty for the repository's default, or the one in the link)
+        required: false
+        default: ""
+      skins:
+        description: >-
+          Which skins to convert, by folder name, separated by commas (e.g. "PLi-FullHD").
+          "all" converts every 1920x1080 and 1280x720 skin found.
+        required: true
+        default: all
+      release:
+        description: Publish the converted skins as a release (one zip per skin, kept until you delete it)
+        type: boolean
+        default: true
+      save_to_repo:
+        description: Also commit the converted files to converted/<repo>/ in this repository
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  plan:
+    name: Download and check
+    runs-on: ubuntu-24.04
+    outputs:
+      skins: ${{ steps.list.outputs.skins }}
+      source: ${{ steps.fetch.outputs.source }}
+      slug: ${{ steps.fetch.outputs.slug }}
+      commit: ${{ steps.fetch.outputs.commit }}
+      url: ${{ steps.fetch.outputs.url }}
+      repo_root: ${{ steps.fetch.outputs.repo_root }}
+      repo_name: ${{ steps.fetch.outputs.repo_name }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - run: pip install "pillow>=10"
+
+      - name: Download the skin repository
+        id: fetch
+        env:
+          LINK: ${{ inputs.link }}
+          BRANCH: ${{ inputs.branch }}
+          SKIN_REPO_TOKEN: ${{ secrets.SKIN_REPO_TOKEN }}
+        run: python3 fetch_source.py "$LINK" --ref "$BRANCH" --dest src
+
+      - name: Find the skins
+        id: list
+        env:
+          SKINS: ${{ inputs.skins }}
+          ROOT: ${{ steps.fetch.outputs.repo_root }}
+          ONLY: ${{ steps.fetch.outputs.only_skin }}
+          REPO_NAME: ${{ steps.fetch.outputs.repo_name }}
+          SOURCE: ${{ steps.fetch.outputs.source }}
+          COMMIT: ${{ steps.fetch.outputs.commit }}
+        run: |
+          if [ -n "$ONLY" ] && [ "$(echo "$SKINS" | tr '[:upper:]' '[:lower:]' | xargs)" = "all" ]; then
+            SKINS="$ONLY"   # the link points at one skin's folder
+          fi
+          list=$(python3 wqhd_convert.py --repo-root "$ROOT" --checkout-root src --repo-name "$REPO_NAME" \
+                   --skins "$SKINS" --list)
+          echo "Converting: $list"
+          echo "skins=$list" >> "$GITHUB_OUTPUT"
+          {
+            echo "### Source"
+            echo "$SOURCE (commit \`$COMMIT\`)"
+            echo ""
+            echo "Skins to convert: \`$list\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # hand the exact files to the convert jobs, so every job works on the same commit
+      - name: Pack the source
+        run: tar --exclude=.git -cf source.tar src
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: source
+          path: source.tar
+          retention-days: 1
+          if-no-files-found: error
+
+  convert:
+    name: Convert ${{ matrix.skin }}
+    needs: plan
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        skin: ${{ fromJSON(needs.plan.outputs.skins) }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - run: pip install "pillow>=10"
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: source
+
+      - name: Unpack the source
+        run: tar -xf source.tar
+
+      - name: Convert
+        id: convert
+        env:
+          SKIN: ${{ matrix.skin }}
+          ROOT: ${{ needs.plan.outputs.repo_root }}
+          REPO_NAME: ${{ needs.plan.outputs.repo_name }}
+        run: |
+          python3 wqhd_convert.py --repo-root "$ROOT" --checkout-root src --repo-name "$REPO_NAME" \
+            --skins "$SKIN" --out dist
+
+      - name: Add report to the job summary
+        env:
+          NEW_NAME: ${{ steps.convert.outputs.new_name }}
+        run: |
+          {
+            echo "## $NEW_NAME"
+            echo '```'
+            cat "dist/$NEW_NAME-report.txt"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # The artifact download is the installable zip: usr/share/enigma2/<skin>/...
+      - uses: actions/upload-artifact@v7
+        with:
+          name: wqhd-${{ steps.convert.outputs.new_name }}
+          path: dist/${{ steps.convert.outputs.new_name }}/
+          if-no-files-found: error
+
+  save:
+    name: Save to converted/
+    needs: [plan, convert]
+    if: ${{ inputs.save_to_repo && !cancelled() && needs.convert.result != 'skipped' }}
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    concurrency:
+      group: save-converted-${{ github.ref }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: wqhd-*
+          path: ${{ runner.temp }}/converted
+
+      - name: Copy into converted/
+        env:
+          CONVERTED: ${{ runner.temp }}/converted
+          SLUG: ${{ needs.plan.outputs.slug }}
+        run: |
+          dest="converted/$SLUG"
+          found=0
+          # one artifact may unpack straight into the folder, several get a folder each
+          while read -r e2; do
+            root=${e2%/usr/share/enigma2}
+            for skin in "$e2"/*/; do
+              rm -rf "${dest:?}/usr/share/enigma2/$(basename "$skin")"
+            done
+            mkdir -p "$dest"
+            cp -a "$root/usr" "$dest/"
+            found=1
+          done < <(find "$CONVERTED" -maxdepth 4 -type d -path '*/usr/share/enigma2')
+          if [ "$found" = 0 ]; then
+            echo "No converted skins found"; exit 1
+          fi
+          find "$dest" -maxdepth 4 -type d -path '*/usr/share/enigma2/*' -prune -print
+
+      - name: Commit and push
+        env:
+          SOURCE: ${{ needs.plan.outputs.source }}
+          COMMIT: ${{ needs.plan.outputs.commit }}
+          SLUG: ${{ needs.plan.outputs.slug }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "converted/$SLUG"
+          if git diff --cached --quiet; then
+            echo "No changes - converted/$SLUG is already up to date."
+            exit 0
+          fi
+          git commit -q -m "WQHD: convert $SOURCE" -m "Source commit: $COMMIT"
+          git pull --rebase -q
+          git push
+          echo "Committed to converted/$SLUG: $(git log -1 --format=%h)" >> "$GITHUB_STEP_SUMMARY"
+
+  release:
+    name: Publish release
+    needs: [plan, convert]
+    if: ${{ inputs.release && !cancelled() && needs.convert.result != 'skipped' }}
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: wqhd-*
+          path: artifacts
+
+      - name: Zip each skin
+        run: |
+          mkdir -p release
+          # one artifact unpacks straight into artifacts/, several get a folder each
+          find artifacts -regex '.*/usr/share/enigma2/[^/]*/CONVERSION-REPORT\.txt' | while read -r rep; do
+            root=${rep%%/usr/share/enigma2/*}
+            name=$(basename "$(dirname "$rep")")
+            (cd "$root" && zip -qr "$GITHUB_WORKSPACE/release/$name.zip" usr)
+          done
+          ls -l release
+          [ -n "$(ls release)" ] || { echo "Nothing to release"; exit 1; }
+
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE: ${{ needs.plan.outputs.source }}
+          COMMIT: ${{ needs.plan.outputs.commit }}
+          URL: ${{ needs.plan.outputs.url }}
+          SLUG: ${{ needs.plan.outputs.slug }}
+        run: |
+          tag="wqhd-${SLUG}-${GITHUB_RUN_NUMBER}"
+          notes=$(printf '%s\n' \
+            "2560x1440 (WQHD) conversion of **${SOURCE}**" \
+            "" \
+            "Source: ${URL%.git} at commit \`${COMMIT}\`" \
+            "" \
+            "Install: unzip into \`/\` on the box (everything lands in \`/usr/share/enigma2/\`, plus any renderers the skin ships), then pick the skin in Menu > Setup > User Interface > Skin setup." \
+            "" \
+            "Each zip has a CONVERSION-REPORT.txt in the skin folder listing anything that needs checking.")
+          gh release create "$tag" release/*.zip \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "WQHD: ${SOURCE}" \
+            --notes "$notes"
